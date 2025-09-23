@@ -18,6 +18,6 @@
     }
     ?>
 
-    
+    <button>CADASTRAR</button>
 
 </form>

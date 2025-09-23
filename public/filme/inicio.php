@@ -1,5 +1,2 @@
 <button><a href="filme/listar">FILMES</a></button>
-
-<?php 
-echo "PAGINA INICIAL"
-?>
+<button><a href="avalia/listar">AVALIAÇÕES</a></button>

@@ -11,7 +11,7 @@ class Filme
 {
 
     private ITemplate $template;
-    
+
     public function __construct()
     {
 
@@ -70,7 +70,7 @@ class Filme
         header("location: /sugest_filmes/filme/listar?info=1");
     }
 
-    public function deletar() 
+    public function deletar()
     {
         $id = $_GET["id"];
         $service = new FilmeService();
@@ -78,10 +78,9 @@ class Filme
         header("location: /sugest_filmes/filme/listar?info=1");
     }
 
-    public function inicio(){
+    public function inicio()
+    {
 
         $this->template->layout("\\public\\filme\\inicio.php");
-
     }
-
 }

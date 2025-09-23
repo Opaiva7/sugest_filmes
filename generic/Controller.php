@@ -17,7 +17,16 @@ class Controller{
             "filme/inserir" => new Acao("Filme", "inserir"),
             "filme/alterar" => new Acao("Filme", "alterar"),
             "filme/deletar" => new Acao("Filme", "deletar"),
-            "sugest_filmes/inicio" => new Acao("Filme", "inicio")
+            "sugest_filmes/inicio" => new Acao("Filme", "inicio"),
+
+            "avalia/listar" => new Acao("Avalia", "listar"),
+            "avalia/formulario" => new Acao("Avalia", "formulario"),
+            "avalia/formularioalterar" => new Acao("Avalia", "alteraForm"),
+            "avalia/formulariodeletar" => new Acao("Avalia", "deletaForm"),
+            "avalia/inserir" => new Acao("Avalia", "inserir"),
+            "avalia/alterar" => new Acao("Avalia", "alterar"),
+            "avalia/deletar" => new Acao("Avalia", "deletar"),
+
         ];
     }
 
