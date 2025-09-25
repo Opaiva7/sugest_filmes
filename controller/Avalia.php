@@ -27,7 +27,7 @@ class Avalia
 
     public function inserir()
     {
-
+       
         $filme_id = $_POST["filme_id"];
         $categoria_id = $_POST["categoria_id"];
         $nota = $_POST["nota"];
@@ -70,7 +70,7 @@ class Avalia
         $categoria_id = $_POST["categoria_id"];
         $nota = $_POST["nota"];
         $service = new AvaliaService();
-        $resultado = $service->inserir($id, $filme_id, $categoria_id, $nota);
+        $resultado = $service->alterar($id, $filme_id, $categoria_id, $nota);
         header("location: /sugest_filmes/avalia/listar?info=1");
     }
 

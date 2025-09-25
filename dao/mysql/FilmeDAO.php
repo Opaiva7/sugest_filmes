@@ -30,7 +30,6 @@ class FilmeDAO extends MysqlFactory implements IFilmeDAO
     {
         $sql = "INSERT INTO filmes (titulo, ano_lancamento) VALUES (:titulo, :ano_lancamento)";
         $param = [
-
             
             ":titulo" => $titulo,
             ":ano_lancamento" => $ano_lancamento

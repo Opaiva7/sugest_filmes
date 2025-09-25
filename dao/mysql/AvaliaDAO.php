@@ -41,7 +41,7 @@ class AvaliaDAO extends MysqlFactory implements IAvaliaDAO
 
     public function alterar($id, $filme_id, $categoria_id, $nota){
 
-        $sql = "UPDATE avaliacoes SET filme_id = :filme_id, categoria = :categoria_id, nota = :nota WHERE id = :id";
+        $sql = "UPDATE avaliacoes SET filme_id = :filme_id, categoria_id = :categoria_id, nota = :nota WHERE id = :id";
         $param = [
             ":filme_id"=> $filme_id,
             ":categoria_id"=> $categoria_id,
