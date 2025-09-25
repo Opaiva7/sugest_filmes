@@ -34,6 +34,7 @@
     <h1>Alterar Filme</h1>
     <div class="subtitle">Edite as informações e salve</div>
 
+<<<<<<< HEAD
     <?php if (!$p): ?>
       <div class="empty">Nenhum registro encontrado.</div>
       <div class="back"><a href="/sugest_filmes/filme/listar">← Voltar</a></div>
@@ -72,3 +73,19 @@
   </div>
 </body>
 </html>
+=======
+    <tr>
+        <td>
+            <form action="/sugest_filmes/filme/alterar" method="POST">
+                <input type="text" name="titulo" value="<?= $p["titulo"] ?>"> 
+                <input type="text" name="ano_lancamento" value="<?= $p["ano_lancamento"] ?>">
+                <input type="hidden" name="id" value="<?= $p["id"] ?>">
+                
+                <button>CONFIRMAR</button>
+            </form>
+        </td>
+    </tr>
+<?php
+}
+?>
+>>>>>>> 5a8204ebd6fe3fae0e60081df4882c18415154f7

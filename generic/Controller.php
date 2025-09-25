@@ -30,6 +30,18 @@ class Controller {
             "avalia/inserir"           => new Acao("Avalia", "inserir"),
             "avalia/alterar"           => new Acao("Avalia", "alterar"),
             "avalia/deletar"           => new Acao("Avalia", "deletar"),
+            "avalia/inserir" => new Acao("Avalia", "inserir"),
+            "avalia/alterar" => new Acao("Avalia", "alterar"),
+            "avalia/deletar" => new Acao("Avalia", "deletar"),
+
+            "categ/listar" => new Acao("Categ", "listar"),
+            "categ/formulario" => new Acao("Categ", "formulario"),
+            "categ/formularioalterar" => new Acao("Categ", "alteraForm"),
+            "categ/formulariodeletar" => new Acao("Categ", "deletaForm"),
+            "categ/inserir" => new Acao("Categ", "inserir"),
+            "categ/alterar" => new Acao("Categ", "alterar"),
+            "categ/deletar" => new Acao("Categ", "deletar"),
+
         ];
     }
 

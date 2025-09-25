@@ -1,5 +1,4 @@
 <?php
-
 foreach($parametro as $p){
 ?>
     <tr>

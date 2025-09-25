@@ -78,6 +78,7 @@ class Avalia
         // >>> corrigido: aqui é ALTERAR, não inserir
         $service->alterar($id, $filme_id, $categoria_id, $nota);
 
+        $resultado = $service->alterar($id, $filme_id, $categoria_id, $nota);
         header("location: /sugest_filmes/avalia/listar?info=1");
         exit;
     }

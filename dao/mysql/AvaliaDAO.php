@@ -32,6 +32,7 @@ class AvaliaDAO extends MysqlFactory implements IAvaliaDAO
         return $this->banco->executar($sql, $param);
     }
 
+<<<<<<< HEAD
     public function alterar($id, $filme_id, $categoria_id, $nota)
     {
         // >>> corrigido: coluna é categoria_id
@@ -40,6 +41,11 @@ class AvaliaDAO extends MysqlFactory implements IAvaliaDAO
                        categoria_id = :categoria_id,
                        nota = :nota
                  WHERE id = :id";
+=======
+    public function alterar($id, $filme_id, $categoria_id, $nota){
+
+        $sql = "UPDATE avaliacoes SET filme_id = :filme_id, categoria_id = :categoria_id, nota = :nota WHERE id = :id";
+>>>>>>> 5a8204ebd6fe3fae0e60081df4882c18415154f7
         $param = [
             ":filme_id"     => $filme_id,
             ":categoria_id" => $categoria_id,
