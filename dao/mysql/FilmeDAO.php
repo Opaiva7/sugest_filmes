@@ -7,57 +7,54 @@ use generic\MysqlFactory;
 
 class FilmeDAO extends MysqlFactory implements IFilmeDAO
 {
-
     public function listarFilmes()
     {
-
-        $sql = "SELECT id, titulo, ano_lancamento FROM filmes";
-        $retorno = $this->banco->executar($sql);
-        return $retorno;
+        $sql = "SELECT id, titulo, ano_lancamento, poster_url, sinopse FROM filmes";
+        return $this->banco->executar($sql);
     }
 
     public function listarId($id)
     {
-        $sql = "SELECT id, titulo, ano_lancamento FROM filmes WHERE id =:id";
-        $param =  [
-            ":id" => $id
-        ];
-        $retorno = $this->banco->executar($sql, $param);
-        return $retorno;
+        $sql = "SELECT id, titulo, ano_lancamento, poster_url, sinopse FROM filmes WHERE id = :id";
+        $param =  [":id" => $id];
+        return $this->banco->executar($sql, $param);
     }
 
-    public function inserir($titulo, $ano_lancamento)
+    public function inserir($titulo, $ano_lancamento, $poster_url = null, $sinopse = null)
     {
-        $sql = "INSERT INTO filmes (titulo, ano_lancamento) VALUES (:titulo, :ano_lancamento)";
+        $sql = "INSERT INTO filmes (titulo, ano_lancamento, poster_url, sinopse)
+                VALUES (:titulo, :ano_lancamento, :poster_url, :sinopse)";
         $param = [
-
-            
-            ":titulo" => $titulo,
-            ":ano_lancamento" => $ano_lancamento
-        ];
-        $retorno = $this->banco->executar($sql, $param);
-        return $retorno;
-    }
-
-    public function alterar($id, $titulo, $ano_lancamento)
-    {
-        $sql = "UPDATE filmes SET titulo = :titulo, ano_lancamento = :ano_lancamento WHERE id = :id";
-        $param = [
-            ":titulo" => $titulo,
+            ":titulo"         => $titulo,
             ":ano_lancamento" => $ano_lancamento,
-            ":id" => $id
+            ":poster_url"     => $poster_url,
+            ":sinopse"        => $sinopse
         ];
-        $retorno = $this->banco->executar($sql, $param);
-        return $retorno;
+        return $this->banco->executar($sql, $param);
+    }
+
+    public function alterar($id, $titulo, $ano_lancamento, $poster_url = null, $sinopse = null)
+    {
+        $sql = "UPDATE filmes
+                   SET titulo = :titulo,
+                       ano_lancamento = :ano_lancamento,
+                       poster_url = :poster_url,
+                       sinopse = :sinopse
+                 WHERE id = :id";
+        $param = [
+            ":titulo"         => $titulo,
+            ":ano_lancamento" => $ano_lancamento,
+            ":poster_url"     => $poster_url,
+            ":sinopse"        => $sinopse,
+            ":id"             => $id
+        ];
+        return $this->banco->executar($sql, $param);
     }
 
     public function deletar($id)
     {
         $sql = "DELETE FROM filmes WHERE id = :id";
-        $param = [
-            ":id" => $id
-        ];
-        $retorno = $this->banco->executar($sql, $param);
-        return $retorno;
+        $param = [":id" => $id];
+        return $this->banco->executar($sql, $param);
     }
 }

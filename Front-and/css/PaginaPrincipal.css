@@ -1,0 +1,157 @@
+/* =========================
+   Fonte / Reset básico
+   ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+html, body { height: 100%; }
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #000; /* fundo preto */
+  color: #fff;
+  margin: 0;
+}
+
+/* =========================
+   Elementos gerais
+   ========================= */
+section, footer {
+  border-top: 1px solid rgba(138, 43, 226, 0.25); /* detalhe roxo */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+nav {
+  border-bottom: 2px solid rgba(138, 43, 226, 0.5);
+}
+
+/* Degradê roxo -> branco (títulos / logo) */
+.gradient-text {
+  background: linear-gradient(90deg, #8A2BE2 0%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================
+   Cards / Botões
+   ========================= */
+.movie-card {
+  background: transparent;
+  border: 1px solid rgba(138, 43, 226, 0.30);
+  border-radius: 12px;
+  padding: 0.5rem;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.movie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.35);
+}
+
+.movie-card img {
+  display: block;
+  border-radius: 10px;
+  border: 1px solid rgba(138, 43, 226, 0.40);
+}
+
+button, .btn-purple, a.btn-purple {
+  border: 1px solid rgba(138, 43, 226, 0.6);
+  background: transparent;
+  color: #fff;
+  transition: background .2s ease, border-color .2s ease, opacity .2s ease;
+  cursor: pointer;
+}
+button:hover, .btn-purple:hover, a.btn-purple:hover {
+  background: rgba(138, 43, 226, 0.20);
+}
+
+/* Acessibilidade (teclado) */
+a:focus-visible, button:focus-visible {
+  outline: 2px dashed #8A2BE2;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Transição mobile menu */
+#mobileMenu { transition: all .2s ease-in-out; }
+
+/* Utilitário: truncar em 2 linhas */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* =========================
+   Banner (fade ESQ -> DIR)
+   ========================= */
+.banner-container {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  isolation: isolate; /* garante que o ::before fica acima da imagem */
+}
+
+/* altura do banner; pode ajustar se quiser */
+.banner-container img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;      /* cobre sem achatar */
+  object-position: center;
+  display: block;
+}
+
+/* camada de gradiente + blur, da ESQUERDA (forte) para DIREITA (transparente) */
+.banner-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.80) 0%,
+      rgba(0,0,0,0.55) 30%,
+      rgba(0,0,0,0.25) 60%,
+      rgba(0,0,0,0.00) 100%
+    );
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* conteúdo sobre a imagem (título/sinopse) fica acima do fade */
+.banner-container > .absolute {
+  z-index: 2;
+}
+
+/* =========================
+   PÔSTER (proporção 2:3)
+   ========================= */
+/* Container que mantém a proporção 2:3 em qualquer largura */
+.poster-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;  /* 0.666… — pôster padrão */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  background: #0a0a0a;
+}
+
+/* A imagem preenche o container sem distorcer */
+.poster-wrap img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* preserva proporção */
+  object-position: center;
+  display: block;
+}
+
+/* Opcional: leve sombra na imagem do pôster */
+.poster-wrap img {
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.35));
+}

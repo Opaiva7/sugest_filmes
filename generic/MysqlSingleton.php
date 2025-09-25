@@ -1,47 +1,58 @@
-
 <?php
+
+namespace generic;
 
 class MysqlSingleton
 {
     private static ?MysqlSingleton $instance = null;
-    private $dsn = 'mysql:host=localhost;dbname=sugest_filmes';
-    private $usuario = "root";
-    private $senha = "";
-    private $options = null;
-    private $conn = null;
 
+    private string $dsn      = 'mysql:host=localhost;dbname=sugest_filmes;charset=utf8mb4';
+    private string $usuario  = 'root';
+    private string $senha    = '';
+    private ?array $options  = [
+        \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
+        \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+    ];
+
+    /** @var \PDO|null */
+    private $conn = null;
 
     private function __construct()
     {
-        if ($this->conn == null) {
-            $this->conn = new PDO($this->dsn, $this->usuario, $this->senha, $this->options);
+        if ($this->conn === null) {
+            $this->conn = new \PDO($this->dsn, $this->usuario, $this->senha, $this->options);
         }
     }
 
-    public static function getInstance()
+    public static function getInstance(): MysqlSingleton
     {
-        if (self::$instance == null) {
+        if (self::$instance === null) {
             self::$instance = new MysqlSingleton();
         }
-
         return self::$instance;
     }
 
-
-    public function executar($query, $param = array())
+    /**
+     * Executa query preparada. Retorna array (SELECT) ou bool (INSERT/UPDATE/DELETE).
+     */
+    public function executar(string $query, array $param = [])
     {
+        if (!$this->conn) return false;
 
+        $sth = $this->conn->prepare($query);
 
-        if ($this->conn) {
-            $sth = $this->conn->prepare($query);
-            foreach ($param as $k => $v) {
-                $sth->bindValue($k, $v);
-            }
-
-            $sth->execute($param);
-            return $sth->fetchAll(PDO::FETCH_ASSOC);
+        // bindValue explícito (mantém compatibilidade com seu padrão)
+        foreach ($param as $k => $v) {
+            $sth->bindValue($k, $v);
         }
+
+        $ok = $sth->execute();
+
+        // Tenta detectar se é SELECT
+        if (stripos(ltrim($query), 'select') === 0) {
+            return $sth->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
+        return $ok;
     }
 }
-
-?>
